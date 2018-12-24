@@ -59,7 +59,7 @@ class Slider extends Component {
                     <input
                         placeholder="Min"
                         type="number"
-                        defaultValue={Slider.calculateValue(this.state.minSlider)}
+                        value={this.state.min}
                         onChange={this.onMinChange}
                         min={Slider.MIN_VALUE}
                         max={Slider.MAX_VALUE}
@@ -67,7 +67,7 @@ class Slider extends Component {
                     <input
                         placeholder="Max"
                         type="number"
-                        defaultValue={Slider.calculateValue(this.state.maxSlider)}
+                        value={this.state.max}
                         onChange={this.onMaxChange}
                         min={Slider.MIN_VALUE}
                         max={Slider.MAX_VALUE}
@@ -76,8 +76,8 @@ class Slider extends Component {
                 <Range
                     onChange={this.onSliderChange}
                     value={[
-                        Slider.calculatePosition(this.state.min),
-                        Slider.calculatePosition(this.state.max)
+                        this.state.minSlider,
+                        this.state.maxSlider,
                     ]}
                     min={Slider.MIN_POS}
                     max={Slider.MAX_POS}
