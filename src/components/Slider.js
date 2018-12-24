@@ -25,6 +25,7 @@ class Slider extends Component {
         this.onMinChange = this.onMinChange.bind(this);
         this.onMaxChange = this.onMaxChange.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
+        this.onSliderMouseUp = this.onSliderMouseUp.bind(this);
     }
     onSliderChange(e) {
         const [min, max] = e;
@@ -34,6 +35,14 @@ class Slider extends Component {
             maxSlider: max,
             min: Slider.calculateValue(min),
             max: Slider.calculateValue(max),
+        }));
+    }
+    onSliderMouseUp() {
+        console.log('>>>>>> UP');
+        this.setState((prev) => ({
+            ...prev,
+            minSlider: Slider.calculatePosition(this.state.min),
+            maxSlider: Slider.calculatePosition(this.state.max),
         }));
     }
     onMinChange(e) {
@@ -73,15 +82,17 @@ class Slider extends Component {
                         max={Slider.MAX_VALUE}
                     />
                 </div>
-                <Range
-                    onChange={this.onSliderChange}
-                    value={[
-                        this.state.minSlider,
-                        this.state.maxSlider,
-                    ]}
-                    min={Slider.MIN_POS}
-                    max={Slider.MAX_POS}
-                />
+                <div onMouseUp={this.onSliderMouseUp}>
+                    <Range
+                        onChange={this.onSliderChange}
+                        value={[
+                            this.state.minSlider,
+                            this.state.maxSlider,
+                        ]}
+                        min={Slider.MIN_POS}
+                        max={Slider.MAX_POS}
+                    />
+                </div>
             </div>
 
         );
